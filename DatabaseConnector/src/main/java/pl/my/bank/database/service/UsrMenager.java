@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.my.bank.database.service;
 
 import java.util.List;
@@ -14,8 +13,11 @@ import pl.my.bank.database.orm.Usr;
  * @author karol
  */
 public interface UsrMenager {
-     void addUsr(Usr usr);
-//     List<Usr> getAllEmployees();
-//     void deleteUsr(int usrId);
-    
+
+    void addUsr(Usr usr);
+
+    List<Usr> getAllUsr();
+
+    void deleteUsr(Usr usr);
+
 }

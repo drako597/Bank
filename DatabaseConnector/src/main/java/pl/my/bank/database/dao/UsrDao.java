@@ -16,7 +16,7 @@ public interface UsrDao {
 
     void saveUsr(Usr user);
 
-    void deleteUsr(String key);
+    void deleteUsr(Usr usr);
 
     void updateUsr(Usr user);
 

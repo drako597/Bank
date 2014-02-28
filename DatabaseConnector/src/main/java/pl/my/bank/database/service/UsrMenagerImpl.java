@@ -6,6 +6,7 @@
 
 package pl.my.bank.database.service;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.my.bank.database.dao.UsrDao;
@@ -24,8 +25,18 @@ public class UsrMenagerImpl implements UsrMenager{
     
     @Transactional
     public void addUsr(Usr usr) {
-       usrDao.saveUsr(usr);
+       this.usrDao.saveUsr(usr);
     }
+    public void deleteUsr(Usr usr){
+        usrDao.deleteUsr(usr);
+    }
+
+    @Transactional
+    public List<Usr> getAllUsr() {
+        return this.usrDao.listUsr();
+    }
+    
+    
     
     
     

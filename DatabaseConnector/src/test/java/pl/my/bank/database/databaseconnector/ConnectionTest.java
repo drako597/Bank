@@ -6,13 +6,9 @@
 package pl.my.bank.database.databaseconnector;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import org.apache.commons.dbcp.BasicDataSource;
-import org.apache.commons.dbcp.DriverManagerConnectionFactory;
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +16,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 /**

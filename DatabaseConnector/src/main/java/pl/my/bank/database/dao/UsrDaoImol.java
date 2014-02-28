@@ -5,8 +5,10 @@
  */
 package pl.my.bank.database.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.transaction.Transactional;
+import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import pl.my.bank.database.orm.Usr;
@@ -17,25 +19,31 @@ import pl.my.bank.database.orm.Usr;
  */
 @Repository("usrDao")
 public class UsrDaoImol extends castomHibernateDaoSupport implements UsrDao {
+    private static Logger log = Logger.getLogger(UsrDaoImol.class);
+
     @Transactional
-    public void saveUsr(Usr user) {
-//        Transaction t = getSessionFactory().getCurrentSession().beginTransaction();
-        getHibernateTemplate().save(user);
-//        t.commit();
+    public void saveUsr(Usr usr) {
+        
+        getHibernateTemplate().save(usr);
+        log.info("SAVE Usr: "+usr.getLogin());
     }
 
-    public void deleteUsr(String key) {
-        getHibernateTemplate().delete(key);
+    @Transactional
+    public void deleteUsr(Usr usr) {
+
+        getSessionFactory().getCurrentSession().delete(usr);
+        log.info("DELETE Usr: "+usr.getLogin());
     }
 
+    @Transactional
     public void updateUsr(Usr user) {
         getHibernateTemplate().update(user);
     }
 
+    @Transactional
     public List<Usr> listUsr() {
-//        getHibernateTemplate().
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return null;
+        log.info("CREATE LIST Usr");
+        return getSessionFactory().getCurrentSession().createQuery("from Usr").list();
     }
 
 }
