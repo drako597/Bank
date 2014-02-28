@@ -27,17 +27,17 @@ public class Account implements Serializable {
     private int bill_number;
     @Column(name = "registration_date", nullable = false)
     private Date registration_date;
-    
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "account_creditcart", joinColumns = { 
-			@JoinColumn(name = "account_id", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "creditCart_id", 
-					nullable = false, updatable = false) })
-    private Set<CreditCart> creditCarts = new HashSet<CreditCart>(0);
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Usr usr;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "account_creditcart", joinColumns = {
+        @JoinColumn(name = "account_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "creditCart_id",
+                        nullable = false, updatable = false)})
+    private Set<CreditCart> creditCarts = new HashSet<CreditCart>(0);
+
+//    @ManyToOne
+//    private Usr usr;
     public Account() {
     }
 
@@ -70,14 +70,6 @@ public class Account implements Serializable {
         this.registration_date = registration_date;
     }
 
-    public Set<CreditCart> getCreditCart() {
-        return creditCarts;
-    }
-
-    public void setCreditCart(Set<CreditCart> creditCarts) {
-        this.creditCarts = creditCarts;
-    }
-
     public Set<CreditCart> getCreditCarts() {
         return creditCarts;
     }
@@ -86,14 +78,11 @@ public class Account implements Serializable {
         this.creditCarts = creditCarts;
     }
 
-    public Usr getUsr() {
-        return usr;
-    }
-
-    public void setUsr(Usr usr) {
-        this.usr = usr;
-    }
-    
-    
-
+//    public Usr getUsr() {
+//        return usr;
+//    }
+//
+//    public void setUsr(Usr usr) {
+//        this.usr = usr;
+//    }
 }

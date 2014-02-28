@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pl.my.bank.database.orm;
 
 import java.io.Serializable;
@@ -16,21 +15,23 @@ import javax.persistence.*;
  * @author karol
  */
 @Entity
-@Table(name = "usr")
-public class Usr implements Serializable{
+//@Table(name = "usr")
+public class Usr implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,length = 10,unique = true)
+    @Column(name = "user_id", nullable = false, length = 10, unique = true)
     private int user_id;
-    @Column(nullable = false,length = 10,unique = true)
+    @Column(nullable = false, length = 10, unique = true)
     private int login;
-    @Column(nullable = false,length = 255,unique = false)
+    @Column(nullable = false, length = 255, unique = false)
     private String password;
-    
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private UsrInfo usrInfo;
-    
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usr")    
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn()
     private Set<Account> accounts = new HashSet<Account>();
 
     public Usr() {
@@ -40,7 +41,6 @@ public class Usr implements Serializable{
         this.login = login;
         this.password = password;
     }
-    
 
     public int getUser_id() {
         return user_id;
@@ -81,7 +81,5 @@ public class Usr implements Serializable{
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
     }
-    
-    
-    
+
 }
