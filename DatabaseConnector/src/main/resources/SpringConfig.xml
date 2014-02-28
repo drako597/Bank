@@ -12,8 +12,10 @@
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
 ">
+    <context:annotation-config />
     <context:property-placeholder location="jdbc.properties" />
-    <context:component-scan base-package="pl.my.bank.database.doa"/>
+    <context:component-scan base-package="pl.my.bank.database.service"/>
+    <context:component-scan base-package="pl.my.bank.database.dao"/> 
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -29,8 +31,8 @@
         </property>
         <property name="packagesToScan" value="pl.my.bank.database.orm"/>
     </bean>
-    
-    <bean id="txManager"
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>

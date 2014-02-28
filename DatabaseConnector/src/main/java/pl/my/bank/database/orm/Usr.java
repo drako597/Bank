@@ -27,7 +27,7 @@ public class Usr implements Serializable{
     @Column(nullable = false,length = 255,unique = false)
     private String password;
     
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "usr", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private UsrInfo usrInfo;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usr")    

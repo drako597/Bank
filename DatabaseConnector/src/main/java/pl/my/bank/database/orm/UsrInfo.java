@@ -30,10 +30,6 @@ public class UsrInfo implements Serializable {
     @Column(name = "registracion_date", nullable = false)
     private Date date;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn
-    private Usr usr;
-
     public UsrInfo() {
     }
 
@@ -85,12 +81,5 @@ public class UsrInfo implements Serializable {
         this.date = date;
     }
 
-    public Usr getUsr() {
-        return usr;
-    }
-
-    public void setUsr(Usr usr) {
-        this.usr = usr;
-    }
 
 }
